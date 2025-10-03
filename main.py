@@ -8,7 +8,7 @@ sys.setrecursionlimit(2000)
 
 #### Fonctions secondaires
 def artcode_i(s):
-    """retourne la liste de tuples encodant une chaîne de caractères passée en argument selon un algorithme itératif
+    """retourne une liste de tuples selon un algorithme itératif
 
     Args:
         s (str): la chaîne de caractères à encoder
@@ -16,25 +16,25 @@ def artcode_i(s):
     Returns:
         list: la liste des tuples (caractère, nombre d'occurences)
     """
-    S = []  # résultat : liste de tuples (caractère, nombre)
-    O = [1]  # liste des compteurs d'occurrences pour chaque bloc
-    C = [s[0]]  # liste des caractères correspondant à chaque bloc
+    res = []  # résultat : liste de tuples (caractère, nombre)
+    occur = [1]  # liste des compteurs d'occurrences pour chaque bloc
+    car = [s[0]]  # liste des caractères correspondant à chaque bloc
     k = 1
     n = len(s)
     # condition d'arrêt : tant que k < n on continue d'examiner la chaîne
     while k < n:
         # si le caractère courant prolonge le bloc précédent
         if s[k] == s[k-1]:
-            O[-1] += 1  # incrémenter le compteur du bloc courant
+            occur[-1] += 1  # incrémenter le compteur du bloc courant
         else :
             # nouveau bloc : ajouter le caractère et initialiser son compteur
-            C += s[k]
-            O += [1]
+            car += s[k]
+            occur += [1]
         k += 1
     # construction finale du résultat en zippant les deux listes
-    for x in zip(C, O):
-        S.append(x)
-    return S
+    for x in zip(car, occur):
+        res.append(x)
+    return res
 
 
 def artcode_r(s: str):
@@ -56,7 +56,7 @@ def artcode_r(s: str):
 #### Fonction principale
 
 def main():
-
+    """Fait des appels de test"""
     print(artcode_i('MMMMaaacXolloMM'))
     print(artcode_r('MMMMaaacXolloMM'))
 
